@@ -20,7 +20,16 @@ document.addEventListener('DOMContentLoaded', function(){
     
 
     document.querySelector('.dot').addEventListener('click', function(){
-        if(document.querySelector('input').value.slice(-1) != '.')
+        lastPlus = document.querySelector('input').value.lastIndexOf("+");
+        lastMinus = document.querySelector('input').value.lastIndexOf("-");
+        lastDivision = document.querySelector('input').value.lastIndexOf("/");
+        lastMultiplication = document.querySelector('input').value.lastIndexOf("*");
+        lastOperation = Math.max(lastPlus, lastMinus, lastDivision, lastMultiplication);
+        if(lastOperation==-1)
+        {
+            lastOperation=0;
+        }
+        if(document.querySelector('input').value.slice(lastOperation).includes(".") == false)
         {
             document.querySelector('input').value+= '.';
             document.querySelector('.gray').textContent+='.'
